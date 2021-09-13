@@ -1,8 +1,8 @@
 <p align="center"><a href="https://script.nl" target="_blank"><img src="https://www.script.nl/script-logo.png" width="400"></a></p>
 
-## About Laravel & Vue template project
+## About Book example-project
 
-Het is een laravel&Vue template project met daar in VueX en de VueRouter. Het is bedoeld om snel aan de slag te kunnen met het programmeren van jouw eigen applicatie.
+Het is een voorbeeld project met Laravel & Vue. Het is bedoeld om inspiratie op te doen voor jouw eigen applicatie.
 
 -   Er kunnen geen rechten aan dit project worden ontleend.
 
