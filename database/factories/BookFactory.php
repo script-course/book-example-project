@@ -22,7 +22,10 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'author_id' => $this->faker->numberBetween(1, 20),
+            'title' => $this->faker->sentence(5, true),
+            'image' => $this->faker->imageUrl(200, 200, 'sports'),
+            'description' => $this->faker->text(200),
         ];
     }
 }
