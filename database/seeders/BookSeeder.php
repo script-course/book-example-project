@@ -16,15 +16,25 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        $categories = Category::count();
-        $users = User::count();
+        // Laravel manier
+        $users = User::All();
+        $categories = Category::All();
 
-        $books = Book::factory(150)->create();
+        $books = Book::factory(150)->hasAttached($users)->hasAttached($categories)->create();
 
-        $books->each(function (Book $book) use ($categories, $users) {
-            for ($i = 0; $i < rand(1, $categories); $i++) {
-                $book->categories()->syncWithoutDetaching(rand(1, $categories));
-                $book->users()->syncWithoutDetaching(rand(1, $users));
+        // Fancy manier
+        $categoryCount = Category::count();
+        $userCount = User::count();
+
+        $books->each(function (Book $book) use ($categoryCount) {
+            for ($i = 0; $i < rand(1, $categoryCount); $i++) {
+                $book->categories()->syncWithoutDetaching(rand(1, $categoryCount));
+            }
+        });
+
+        $books->each(function (Book $book) use ($userCount) {
+            for ($i = 0; $i < rand(1, $userCount); $i++) {
+                $book->users()->syncWithoutDetaching(rand(1, $userCount));
             }
         });
     }
