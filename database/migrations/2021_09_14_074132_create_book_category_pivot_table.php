@@ -17,7 +17,6 @@ class CreateBookCategoryPivotTable extends Migration
             $table->id();
             $table->foreignId('book_id')->references('id')->on('books');
             $table->foreignId('category_id')->references('id')->on('categories');
-            $table->timestamps();
         });
     }
 
