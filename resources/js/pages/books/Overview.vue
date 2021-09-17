@@ -4,11 +4,15 @@
             <div class="card" style="width: 18rem;">
                 <img :src="book.image" class="card-img-top" alt="bookcover" />
                 <div class="card-body">
-                    <h5 class="card-title">{{book.title}}</h5>
+                    <h5 class="card-title">{{ book.title }}</h5>
                     <p class="card-text">
-                        {{book.description}}
+                        {{ book.description }}
                     </p>
-                    <router-link :to="{name:'book.overview'}" class="btn btn-primary">Check book</router-link>
+                    <router-link
+                        :to="{ name: 'book.overview' }"
+                        class="btn btn-primary"
+                        >Check book</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -19,11 +23,11 @@
 export default {
     computed: {
         books() {
-            return this.$store.getters["booksModule/getAll"];
+            return this.$store.getters["books/getAll"];
         }
     },
     mounted() {
-        this.$store.dispatch("booksModule/setAll");
+        this.$store.dispatch("books/setAll");
     }
 };
 </script>

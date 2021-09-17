@@ -4,7 +4,7 @@ import axios from "axios";
  * Defining what the module is, so autocomplete know's what's what
  * @type {import("vuex").Module<{all:{id:number}[]}>}
  */
-export const booksModule = {
+export const books = {
     namespaced: true,
     state: () => ({ all: [] }),
     getters: {

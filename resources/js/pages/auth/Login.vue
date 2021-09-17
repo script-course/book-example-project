@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         login() {
-            this.$store.dispatch("authModule/login", this.auth);
+            this.$store.dispatch("auth/login", this.auth);
         }
     }
 };

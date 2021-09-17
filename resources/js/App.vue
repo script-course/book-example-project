@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Navbar/>
+        <Navbar />
         <h1>{{ message }}</h1>
         <div class="container">
-            <router-view/>
+            <router-view />
         </div>
     </div>
 </template>
@@ -11,14 +11,14 @@
 <script>
 import Navbar from "./components/Navbar.vue";
 export default {
-    components: {Navbar},
+    components: { Navbar },
     data() {
         return {
-            message: "App Hello World",
+            message: "App Hello World"
         };
     },
     mounted() {
-        this.$store.dispatch('booksModule/setAll')
-    },
+        this.$store.dispatch("books/setAll");
+    }
 };
 </script>

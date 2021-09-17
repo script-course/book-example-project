@@ -92,12 +92,12 @@
 export default {
     computed: {
         isLoggedIn() {
-            return this.$store.getters["authModule/getIsLoggedIn"];
+            return this.$store.getters["auth/getIsLoggedIn"];
         }
     },
     methods: {
         logout() {
-            this.$store.dispatch("authModule/logout");
+            this.$store.dispatch("auth/logout");
         }
     }
 };
