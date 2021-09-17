@@ -9,12 +9,12 @@ import store from "./store";
 //Import router
 import router from "./router";
 
-import 'bootstrap'
-import '../css/app.scss'
+import "bootstrap";
+import "../css/app.scss";
 
 new Vue({
     el: "#app",
     store,
     router,
-    render: (h) => h(App),
+    render: h => h(App)
 });
