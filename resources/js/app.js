@@ -9,6 +9,7 @@ import store from "./store";
 //Import router
 import router from "./router";
 
+import 'bootstrap'
 import '../css/app.scss'
 
 new Vue({
