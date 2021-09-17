@@ -47,6 +47,7 @@ export default {
     methods: {
         login() {
             this.$store.dispatch("auth/login", this.auth);
+            this.$router.push("profile");
         }
     }
 };

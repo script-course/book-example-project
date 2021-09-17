@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <router-link class="navbar-brand" :to="{ name: 'Home' }"
+            <router-link class="navbar-brand" :to="{ name: 'home' }"
                 >Bookclub</router-link
             >
             <button
@@ -22,6 +22,14 @@
                             :to="{ name: 'book.overview' }"
                             class="nav-link"
                             >Books</router-link
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <router-link
+                            :to="{ name: 'profile' }"
+                            class="nav-link"
+                            v-if="isLoggedIn"
+                            >Mijn profiel</router-link
                         >
                     </li>
                     <li>
@@ -98,6 +106,7 @@ export default {
     methods: {
         logout() {
             this.$store.dispatch("auth/logout");
+            this.$router.push("home");
         }
     }
 };
