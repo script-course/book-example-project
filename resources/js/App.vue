@@ -2,7 +2,9 @@
     <div>
         <Navbar/>
         <h1>{{ message }}</h1>
-        <router-view/>
+        <div class="container">
+            <router-view/>
+        </div>
     </div>
 </template>
 

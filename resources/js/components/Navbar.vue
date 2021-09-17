@@ -52,7 +52,7 @@
                         </ul>
                     </li> -->
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" @submit.prevent>
                     <input
                         class="form-control me-2"
                         type="search"

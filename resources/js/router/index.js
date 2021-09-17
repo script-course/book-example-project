@@ -15,7 +15,7 @@ export default new VueRouter({
             name: "Home"
         },
         {
-            path: "books",
+            path: "/books",
             component: BookOverview,
             name: "book.overview"
         }
