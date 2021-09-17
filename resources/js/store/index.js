@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { booksModule } from "./modules/books";
+import { authModule } from "./modules/auth";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules:{booksModule},
+    modules: { booksModule, authModule }
 });
