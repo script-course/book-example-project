@@ -23,11 +23,23 @@
                             class="nav-link"
                             >Books</router-link
                         >
+                    </li>
+                    <li>
                         <router-link
                             :to="{ name: 'auth.login' }"
                             class="nav-link"
+                            v-if="!isLoggedIn"
                             >Login</router-link
                         >
+                        <!-- This needs a proper solution -->
+                        <a
+                            class="nav-link pe-auto"
+                            v-if="isLoggedIn"
+                            @click="logout"
+                            href="#"
+                        >
+                            Logout
+                        </a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a
@@ -76,3 +88,17 @@
         </div>
     </nav>
 </template>
+<script>
+export default {
+    computed: {
+        isLoggedIn() {
+            return this.$store.getters["authModule/getIsLoggedIn"];
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch("authModule/logout");
+        }
+    }
+};
+</script>

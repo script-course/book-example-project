@@ -20,3 +20,6 @@ Route::get('books', [BookController::class, 'index']);
 
 Route::post('login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest');
+
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth');

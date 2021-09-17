@@ -17,9 +17,14 @@ export const authModule = {
     },
     actions: {
         async login({ commit }, payload) {
-            console.log(payload);
             const { data } = await axios.post("api/login", payload);
             commit("SET_USER", data);
+            commit("SET_LOGGEDIN", true);
+        },
+        async logout({ commit }) {
+            await axios.get("api/logout");
+            commit("SET_USER", {});
+            commit("SET_LOGGEDIN", false);
         }
     }
 };
