@@ -16,5 +16,8 @@ new Vue({
     el: "#app",
     store,
     router,
-    render: h => h(App)
+    render: h => h(App),
+    mounted() {
+        console.log("Check if user is loggedin!");
+    }
 });
