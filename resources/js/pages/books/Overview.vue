@@ -8,11 +8,7 @@
                     <p class="card-text">
                         {{ book.description }}
                     </p>
-                    <router-link
-                        :to="{ name: 'book.overview' }"
-                        class="btn btn-primary"
-                        >Check book</router-link
-                    >
+                    <router-link :to="{name: 'book.overview'}" class="btn btn-primary">Check book</router-link>
                 </div>
             </div>
         </div>
@@ -23,11 +19,11 @@
 export default {
     computed: {
         books() {
-            return this.$store.getters["books/getAll"];
-        }
+            return this.$store.getters['books/getAll'];
+        },
     },
     mounted() {
-        this.$store.dispatch("books/setAll");
-    }
+        this.$store.dispatch('books/setAll');
+    },
 };
 </script>

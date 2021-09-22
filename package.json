@@ -4,12 +4,16 @@
     "private": true,
     "scripts": {
         "watch": "vite",
+        "lint": "eslint \"resources/js/**/*.{js,vue}\" --fix --cache ",
+        "prettier": "prettier --write \"resources/js/**/*.{js,vue}\"",
         "build": "vite build"
     },
     "devDependencies": {
         "postcss": "^8.2.15",
         "resolve-url-loader": "^4.0.0",
         "rollup-plugin-copy": "^3.4.0",
+        "eslint": "^7.28.0",
+        "eslint-plugin-vue": "^7.11.1",
         "sass": "^1.32.13",
         "vite": "2.3.1",
         "vite-plugin-vue2": "^1.5.1",

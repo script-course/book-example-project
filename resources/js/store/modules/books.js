@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 /**
  * Defining what the module is, so autocomplete know's what's what
@@ -6,18 +6,18 @@ import axios from "axios";
  */
 export const books = {
     namespaced: true,
-    state: () => ({ all: [] }),
+    state: () => ({all: []}),
     getters: {
         getAll: state => state.all,
-        getById: state => id => state.all.find(item => item.id === id)
+        getById: state => id => state.all.find(item => item.id === id),
     },
     mutations: {
-        SET_ALL: (state, payload) => (state.all = payload)
+        SET_ALL: (state, payload) => (state.all = payload),
     },
     actions: {
-        async setAll({ commit }) {
-            const { data } = await axios.get("api/books");
-            commit("SET_ALL", data);
-        }
-    }
+        async setAll({commit}) {
+            const {data} = await axios.get('api/books');
+            commit('SET_ALL', data);
+        },
+    },
 };

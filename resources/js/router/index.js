@@ -1,35 +1,35 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-import Home from "../pages/Home.vue";
-import BookOverview from "../pages/books/Overview.vue";
-import LoginOverview from "../pages/auth/Login.vue";
-import Profile from "../pages/Profile.vue";
+import Home from '../pages/Home.vue';
+import BookOverview from '../pages/books/Overview.vue';
+import LoginOverview from '../pages/auth/Login.vue';
+import Profile from '../pages/Profile.vue';
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
-    mode: "history",
+    mode: 'history',
     routes: [
         {
-            path: "/",
+            path: '/',
             component: Home,
-            name: "home"
+            name: 'home',
         },
         {
-            path: "/books",
+            path: '/books',
             component: BookOverview,
-            name: "book.overview"
+            name: 'book.overview',
         },
         {
-            path: "/login",
+            path: '/login',
             component: LoginOverview,
-            name: "auth.login"
+            name: 'auth.login',
         },
         {
-            path: "/profile",
+            path: '/profile',
             component: Profile,
-            name: "profile"
-        }
-    ]
+            name: 'profile',
+        },
+    ],
 });

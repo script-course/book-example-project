@@ -1,23 +1,22 @@
-import axios from "axios";
-import { root } from "postcss";
+import axios from 'axios';
 
 /**
  * Defining what the module is, so autocomplete know's what's what
  * @type {import("vuex").Module<{all:{id:number}[]}>}
  */
-export const acount = {
+export const account = {
     namespaced: true,
-    state: () => ({ user: [] }),
+    state: () => ({user: []}),
     getters: {
-        get: state => state.user
+        get: state => state.user,
     },
     mutations: {
-        SET: (state, payload) => (state.user = payload)
+        SET: (state, payload) => (state.user = payload),
     },
     actions: {
-        async set({ commit }) {
-            const { data } = await axios.get("api/users");
-            commit("acount/SET", data, { root: true });
-        }
-    }
+        async set({commit}) {
+            const {data} = await axios.get('api/users');
+            commit('account/SET', data, {root: true});
+        },
+    },
 };

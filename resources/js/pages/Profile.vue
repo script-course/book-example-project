@@ -1,22 +1,14 @@
 <template>
     <div class="container">
-        <div
-            class="row"
-            v-for="(userInfo, index) in userInformation"
-            :key="index"
-        >
+        <div v-for="(userInfo, index) in userInformation" :key="index" class="row">
             <template v-if="index !== 'books' && index !== 'id'">
                 <div class="col col-lg-2">{{ translations[index] }}</div>
                 <div class="col col-lg-2">
-                    <div @click="editable = index" v-if="editable != index">
+                    <div v-if="editable != index" @click="editable = index">
                         {{ userInfo }}
                     </div>
 
-                    <text-input
-                        v-if="editable == index"
-                        v-model="userInformation[index]"
-                        v-on:editable="onEnter"
-                    />
+                    <TextInput v-if="editable == index" v-model="userInformation[index]" @editable="onEnter" />
                 </div>
             </template>
         </div>
@@ -37,19 +29,19 @@
 </template>
 
 <script>
-import TextInput from "../components/forms/TextInput.vue";
+import TextInput from '../components/forms/TextInput.vue';
 
 export default {
-    components: { TextInput },
+    components: {TextInput},
     data() {
         return {
             userInformation: {},
-            editable: "",
+            editable: '',
             translations: {
-                first_name: "Voornaam",
-                last_name: "Achternaam",
-                email: "Email-adres"
-            }
+                first_name: 'Voornaam',
+                last_name: 'Achternaam',
+                email: 'Email-adres',
+            },
         };
     },
     computed: {
@@ -59,17 +51,17 @@ export default {
             if (!bookIds) return [];
 
             return bookIds.map(id => {
-                return this.$store.getters["books/getById"](id);
+                return this.$store.getters['books/getById'](id);
             });
-        }
+        },
+    },
+    mounted() {
+        this.userInformation = {...this.$store.getters['account/get']};
     },
     methods: {
         onEnter() {
-            this.editable = "";
-        }
+            this.editable = '';
+        },
     },
-    mounted() {
-        this.userInformation = { ...this.$store.getters["acount/get"] };
-    }
 };
 </script>

@@ -3,8 +3,8 @@
         <input
             type="text"
             :value="value"
-            v-on:input="$emit('input', $event.target.value)"
-            v-on:keyup.enter="$emit('editable')"
+            @input="$emit('input', $event.target.value)"
+            @keyup.enter="$emit('editable')"
         />
     </div>
 </template>
@@ -13,11 +13,9 @@
 export default {
     props: {
         value: {
-            type: String
+            type: String,
+            required: true,
         },
-        editable: {
-            type: String
-        }
-    }
+    },
 };
 </script>

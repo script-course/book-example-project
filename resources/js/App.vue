@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
+import Navbar from './components/Navbar.vue';
 export default {
-    components: { Navbar },
+    components: {Navbar},
     data() {
         return {
-            message: "App Hello World"
+            message: 'App Hello World',
         };
     },
     mounted() {
-        this.$store.dispatch("books/setAll");
-    }
+        this.$store.dispatch('books/setAll');
+    },
 };
 </script>
