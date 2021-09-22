@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <div v-for="(userInfo, index) in userInformation" :key="index" class="row">
-            <template v-if="index !== 'books' && index !== 'id'">
-                <div class="col col-lg-2">{{ translations[index] }}</div>
+        <div v-for="(userInfo, property) in userInformation" :key="property" class="row">
+            <template v-if="property !== 'books' && property !== 'id'">
+                <div class="col col-lg-2">{{ translations[property] }}</div>
                 <div class="col col-lg-2">
-                    <div v-if="editable != index" @click="editable = index">
+                    <div v-if="editable !== property" @click="editable = property">
                         {{ userInfo }}
                     </div>
 
-                    <TextInput v-if="editable == index" v-model="userInformation[index]" @editable="onEnter" />
+                    <TextInput v-if="editable === property" v-model="userInformation[property]" @editable="onEnter" />
                 </div>
             </template>
         </div>
@@ -45,8 +45,10 @@ export default {
         };
     },
     computed: {
+        /** @returns {import('../types/models/book').Book[]} */
         books() {
-            const bookIds = this.userInformation.books;
+            /** @type {number[]} */
+            const bookIds = this.$store.getters['account/get'].books;
 
             if (!bookIds) return [];
 
