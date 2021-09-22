@@ -9,9 +9,6 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "volar.codeLens.pugTools": false,
-    "volar.codeLens.scriptSetupTools": false,
-    "volar.takeOverBuiltinTsExtension": true,
     "[vue]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
