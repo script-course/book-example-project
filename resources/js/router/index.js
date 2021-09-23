@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../pages/Home.vue';
 import BookOverview from '../pages/books/Overview.vue';
 import LoginOverview from '../pages/auth/Login.vue';
-import Profile from '../pages/Profile.vue';
+import Account from '../pages/Account.vue';
 
 Vue.use(VueRouter);
 
@@ -28,7 +28,7 @@ export default new VueRouter({
         },
         {
             path: '/profile',
-            component: Profile,
+            component: Account,
             name: 'profile',
         },
     ],

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div v-for="(userInfo, property) in userInformation" :key="property" class="row">
+        <div v-for="(userInfo, property) in accountForm" :key="property" class="row">
             <template v-if="property !== 'books' && property !== 'id'">
                 <div class="col col-lg-2">{{ translations[property] }}</div>
                 <div class="col col-lg-2">
@@ -8,7 +8,7 @@
                         {{ userInfo }}
                     </div>
 
-                    <TextInput v-if="editable === property" v-model="userInformation[property]" @editable="onEnter" />
+                    <TextInput v-if="editable === property" v-model="accountForm[property]" @editable="onEnter" />
                 </div>
             </template>
         </div>
@@ -36,7 +36,7 @@ export default {
     data() {
         // const user = this.$store.getters['account/get'];
         return {
-            userInformation: {
+            accountForm: {
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -53,7 +53,7 @@ export default {
         /** @returns {import('../types/models/book').Book[]} */
         books() {
             /** @type {number[]} */
-            const bookIds = this.user.books;
+            const bookIds = this.account.books;
 
             if (!bookIds) return [];
 
@@ -62,42 +62,43 @@ export default {
             });
         },
         /** @returns {import('../types/models/user').User} */
-        user() {
+        account() {
             // const user = this.$store.getters['account/get'];
-            // this.userInformation.id = user.id;
-            // this.userInformation.first_name = user.first_name;
-            // this.userInformation.last_name = user.last_name;
-            // this.userInformation.email = user.email;
+            // this.accountForm.id = user.id;
+            // this.accountForm.first_name = user.first_name;
+            // this.accountForm.last_name = user.last_name;
+            // this.accountForm.email = user.email;
             return this.$store.getters['account/get'];
         },
     },
     watch: {
-        user: {
+        account: {
             deep: true,
             immediate: true,
             handler(newUser) {
-                for (const property in this.userInformation) {
-                    // @ts-ignore proprty is string, but userInformation expects specific strings
-                    if (property in newUser) this.userInformation[property] = newUser[property];
+                for (const property in this.accountForm) {
+                    // @ts-ignore proprty is string, but accountForm expects specific strings
+                    if (property in newUser) this.accountForm[property] = newUser[property];
                 }
             },
         },
     },
     // mounted() {
-    //     this.userInformation = {...this.$store.getters['account/get']};
+    //     this.accountForm = {...this.$store.getters['account/get']};
     // },
     // async mounted() {
     //     const {data} = await axios.get('api/me');
-    //     this.userInformation.id = data.id;
-    //     this.userInformation.first_name = data.first_name;
-    //     this.userInformation.last_name = data.last_name;
-    //     this.userInformation.email = data.email;
+    //     this.accountForm.id = data.id;
+    //     this.accountForm.first_name = data.first_name;
+    //     this.accountForm.last_name = data.last_name;
+    //     this.accountForm.email = data.email;
     // },
     beforeCreate() {
         this.$store.dispatch('account/set');
     },
     methods: {
         onEnter() {
+            // this.$store.dispatch('account/update');
             this.editable = '';
         },
     },
