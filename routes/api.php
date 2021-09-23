@@ -24,4 +24,3 @@ Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth');
 
 Route::get('me', [AuthenticatedSessionController::class, 'me'])->middleware('auth');
-

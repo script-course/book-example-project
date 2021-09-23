@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 
-
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Handle an incoming authentication request.
      *
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @param \App\Http\Requests\Auth\LoginRequest $request
+     *
      * @return \App\Http\Resources\UserResource
      */
     public function store(LoginRequest $request): UserResource
@@ -30,10 +30,11 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return integer
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): int
     {
         Auth::guard('web')->logout();
 
