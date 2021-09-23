@@ -6,12 +6,15 @@ import {getRequest, postRequest} from '../../services/http';
  */
 export const auth = {
     namespaced: true,
-    state: () => ({user: {}, isLoggedIn: false}),
+    state: () => ({isLoggedIn: !!JSON.stringify(localStorage.getItem('loggedIn'))}),
     getters: {
         getIsLoggedIn: state => state.isLoggedIn,
     },
     mutations: {
-        SET_LOGGEDIN: (state, payload) => (state.isLoggedIn = payload),
+        SET_LOGGEDIN: (state, payload) => {
+            state.isLoggedIn = payload;
+            localStorage.setItem('loggedIn', payload.toString());
+        },
     },
     actions: {
         async login({commit}, payload) {
