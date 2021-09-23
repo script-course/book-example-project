@@ -16,7 +16,7 @@ export const users = {
     },
     actions: {
         async setAll({commit}) {
-            const {data} = await getRequest('api/users');
+            const {data} = await getRequest('users');
             commit('SET_ALL', data);
         },
     },

@@ -37,7 +37,6 @@ export default {
         // const user = this.$store.getters['account/get'];
         return {
             userInformation: {
-                id: 0,
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -77,10 +76,10 @@ export default {
             deep: true,
             immediate: true,
             handler(newUser) {
-                this.userInformation.id = newUser.id;
-                this.userInformation.first_name = newUser.first_name;
-                this.userInformation.last_name = newUser.last_name;
-                this.userInformation.email = newUser.email;
+                for (const property in this.userInformation) {
+                    // @ts-ignore proprty is string, but userInformation expects specific strings
+                    if (property in newUser) this.userInformation[property] = newUser[property];
+                }
             },
         },
     },

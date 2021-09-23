@@ -16,7 +16,7 @@ export const books = {
     },
     actions: {
         async setAll({commit}) {
-            const {data} = await getRequest('api/books');
+            const {data} = await getRequest('books');
             commit('SET_ALL', data);
         },
     },
