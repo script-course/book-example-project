@@ -95,6 +95,9 @@ export default {
     //     this.userInformation.last_name = data.last_name;
     //     this.userInformation.email = data.email;
     // },
+    beforeCreate() {
+        this.$store.dispatch('account/set');
+    },
     methods: {
         onEnter() {
             this.editable = '';
