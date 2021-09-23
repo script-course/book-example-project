@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import TextInput from '../components/forms/TextInput.vue';
 
 export default {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import {getRequest, postRequest} from '../../services/http';
 
 /**
  * Defining what the module is, so autocomplete know's what's what
@@ -15,12 +15,12 @@ export const auth = {
     },
     actions: {
         async login({commit}, payload) {
-            const {data} = await axios.post('api/login', payload);
+            const {data} = await postRequest('login', payload);
             commit('account/SET', data, {root: true});
             commit('SET_LOGGEDIN', true);
         },
         async logout({commit}) {
-            await axios.get('api/logout');
+            await getRequest('logout');
             commit('account/SET', undefined, {root: true});
             commit('SET_LOGGEDIN', false);
         },

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import {getRequest} from '../../services/http';
 
 /**
  * Defining what the module is, so autocomplete know's what's what
@@ -16,7 +16,7 @@ export const books = {
     },
     actions: {
         async setAll({commit}) {
-            const {data} = await axios.get('api/books');
+            const {data} = await getRequest('api/books');
             commit('SET_ALL', data);
         },
     },
