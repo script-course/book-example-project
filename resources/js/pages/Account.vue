@@ -1,16 +1,14 @@
 <template>
     <div class="container">
         <div v-for="(userInfo, property) in accountForm" :key="property" class="row">
-            <template v-if="property !== 'books' && property !== 'id'">
-                <div class="col col-lg-2">{{ translations[property] }}</div>
-                <div class="col col-lg-2">
-                    <div v-if="editable !== property" @click="editable = property">
-                        {{ userInfo }}
-                    </div>
-
-                    <TextInput v-if="editable === property" v-model="accountForm[property]" @editable="onEnter" />
+            <div class="col col-lg-2">{{ translations[property] }}</div>
+            <div class="col col-lg-2">
+                <div v-if="editable !== property" @click="editable = property">
+                    {{ userInfo }}
                 </div>
-            </template>
+
+                <TextInput v-if="editable === property" v-model="accountForm[property]" @editable="onEnter" />
+            </div>
         </div>
 
         <div class="row">
@@ -58,9 +56,8 @@ export default {
 
             if (!bookIds) return [];
 
-            return bookIds.map(id => {
-                return this.$store.getters['books/getById'](id);
-            });
+            // Filtering here, because the user can be here while the books aren't loaded yet
+            return bookIds.map(id => this.$store.getters['books/getById'](id)).filter(book => book);
         },
         /** @returns {import('../types/models/user').User} */
         account() {
