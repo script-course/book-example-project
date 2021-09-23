@@ -34,8 +34,14 @@ import TextInput from '../components/forms/TextInput.vue';
 export default {
     components: {TextInput},
     data() {
+        // const user = this.$store.getters['account/get'];
         return {
-            userInformation: {},
+            userInformation: {
+                id: 0,
+                first_name: '',
+                last_name: '',
+                email: '',
+            },
             editable: '',
             translations: {
                 first_name: 'Voornaam',
@@ -48,7 +54,7 @@ export default {
         /** @returns {import('../types/models/book').Book[]} */
         books() {
             /** @type {number[]} */
-            const bookIds = this.$store.getters['account/get'].books;
+            const bookIds = this.user.books;
 
             if (!bookIds) return [];
 
@@ -56,10 +62,31 @@ export default {
                 return this.$store.getters['books/getById'](id);
             });
         },
+        /** @returns {import('../types/models/user').User} */
+        user() {
+            // const user = this.$store.getters['account/get'];
+            // this.userInformation.id = user.id;
+            // this.userInformation.first_name = user.first_name;
+            // this.userInformation.last_name = user.last_name;
+            // this.userInformation.email = user.email;
+            return this.$store.getters['account/get'];
+        },
     },
-    mounted() {
-        this.userInformation = {...this.$store.getters['account/get']};
+    watch: {
+        user: {
+            deep: true,
+            immediate: true,
+            handler(newUser) {
+                this.userInformation.id = newUser.id;
+                this.userInformation.first_name = newUser.first_name;
+                this.userInformation.last_name = newUser.last_name;
+                this.userInformation.email = newUser.email;
+            },
+        },
     },
+    // mounted() {
+    //     this.userInformation = {...this.$store.getters['account/get']};
+    // },
     methods: {
         onEnter() {
             this.editable = '';
