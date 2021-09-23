@@ -19,7 +19,7 @@
                         <router-link :to="{name: 'book.overview'}" class="nav-link">Books</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link v-if="isLoggedIn" :to="{name: 'profile'}" class="nav-link">
+                        <router-link v-if="isLoggedIn" :to="{name: 'account'}" class="nav-link">
                             Mijn profiel
                         </router-link>
                     </li>

@@ -52,6 +52,7 @@ export default {
     computed: {
         /** @returns {import('../types/models/book').Book[]} */
         books() {
+            if (!this.account) return [];
             /** @type {number[]} */
             const bookIds = this.account.books;
 
@@ -76,6 +77,7 @@ export default {
             deep: true,
             immediate: true,
             handler(newUser) {
+                if (!newUser) return;
                 for (const property in this.accountForm) {
                     // @ts-ignore proprty is string, but accountForm expects specific strings
                     if (property in newUser) this.accountForm[property] = newUser[property];
