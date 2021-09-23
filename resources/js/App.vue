@@ -14,7 +14,7 @@ export default {
     components: {Navbar},
     data() {
         return {
-            message: 'Gaan we dit nu in het nederlands of engels doen? Gaat nu wat door mekaar',
+            message: 'Gaan we dit nu in het nederlands of engels doen? Gaat nu wat door ELKAAR',
         };
     },
     mounted() {
