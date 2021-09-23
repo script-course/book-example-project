@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import TextInput from '../components/forms/TextInput.vue';
 
 export default {
@@ -86,6 +87,13 @@ export default {
     },
     // mounted() {
     //     this.userInformation = {...this.$store.getters['account/get']};
+    // },
+    // async mounted() {
+    //     const {data} = await axios.get('api/me');
+    //     this.userInformation.id = data.id;
+    //     this.userInformation.first_name = data.first_name;
+    //     this.userInformation.last_name = data.last_name;
+    //     this.userInformation.email = data.email;
     // },
     methods: {
         onEnter() {
