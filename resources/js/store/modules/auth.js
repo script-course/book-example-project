@@ -1,9 +1,5 @@
-import {getRequest, postRequest} from '../../services/http';
+import axios from 'axios';
 
-/**
- * Defining what the module is, so autocomplete know's what's what
- * @type {import('../../types/storeModules').AuthModule}
- */
 export const auth = {
     namespaced: true,
     state: () => ({isLoggedIn: !!JSON.stringify(localStorage.getItem('loggedIn'))}),
@@ -18,12 +14,12 @@ export const auth = {
     },
     actions: {
         async login({commit}, payload) {
-            const {data} = await postRequest('login', payload);
+            const {data} = await axios.post('api/login', payload);
             commit('account/SET', data, {root: true});
             commit('SET_LOGGEDIN', true);
         },
         async logout({commit}) {
-            await getRequest('logout');
+            await axios.get('api/logout');
             commit('account/SET', undefined, {root: true});
             commit('SET_LOGGEDIN', false);
         },

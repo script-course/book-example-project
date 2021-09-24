@@ -17,7 +17,6 @@ new Vue({
     store,
     router,
     mounted() {
-        // eslint-disable-next-line no-console
         console.log('Check if user is loggedin!');
     },
     render: h => h(App),

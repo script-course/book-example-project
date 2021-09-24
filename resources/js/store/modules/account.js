@@ -1,9 +1,5 @@
-import {getRequest} from '../../services/http';
+import axios from 'axios';
 
-/**
- * Defining what the module is, so autocomplete know's what's what
- * @type {import('../../types/storeModules').AccountModule}
- */
 export const account = {
     namespaced: true,
     state: () => ({user: undefined}),
@@ -15,7 +11,7 @@ export const account = {
     },
     actions: {
         async set({commit}) {
-            const {data} = await getRequest('me');
+            const {data} = await axios.get('api/me');
             commit('SET', data);
         },
     },

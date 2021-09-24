@@ -32,7 +32,6 @@ import TextInput from '../components/forms/TextInput.vue';
 export default {
     components: {TextInput},
     data() {
-        // const user = this.$store.getters['account/get'];
         return {
             accountForm: {
                 first_name: '',
@@ -48,53 +47,22 @@ export default {
         };
     },
     computed: {
-        /** @returns {import('../types/models/book').Book[]} */
         books() {
-            if (!this.account) return [];
-            /** @type {number[]} */
-            const bookIds = this.account.books;
+            const bookIds = {...this.$store.getters['account/get']}.books;
 
             if (!bookIds) return [];
 
             // Filtering here, because the user can be here while the books aren't loaded yet
             return bookIds.map(id => this.$store.getters['books/getById'](id)).filter(book => book);
         },
-        /** @returns {import('../types/models/user').User} */
-        account() {
-            // const user = this.$store.getters['account/get'];
-            // this.accountForm.id = user.id;
-            // this.accountForm.first_name = user.first_name;
-            // this.accountForm.last_name = user.last_name;
-            // this.accountForm.email = user.email;
-            return this.$store.getters['account/get'];
-        },
     },
-    watch: {
-        account: {
-            deep: true,
-            immediate: true,
-            handler(newUser) {
-                if (!newUser) return;
-                for (const property in this.accountForm) {
-                    // @ts-ignore proprty is string, but accountForm expects specific strings
-                    if (property in newUser) this.accountForm[property] = newUser[property];
-                }
-            },
-        },
+
+    mounted() {
+        for (const property in this.accountForm) {
+            this.accountForm[property] = {...this.$store.getters['account/get']}[property];
+        }
     },
-    // mounted() {
-    //     this.accountForm = {...this.$store.getters['account/get']};
-    // },
-    // async mounted() {
-    //     const {data} = await axios.get('api/me');
-    //     this.accountForm.id = data.id;
-    //     this.accountForm.first_name = data.first_name;
-    //     this.accountForm.last_name = data.last_name;
-    //     this.accountForm.email = data.email;
-    // },
-    beforeCreate() {
-        this.$store.dispatch('account/set');
-    },
+
     methods: {
         onEnter() {
             // this.$store.dispatch('account/update');
