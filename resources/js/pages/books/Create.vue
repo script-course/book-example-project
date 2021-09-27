@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <form @submit.prevent="submitBook">
+        <form @submit.prevent="submitBook" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Book title:</label>
                 <input type="text" class="form-control" id="title" v-model="book.title" />
@@ -38,7 +38,7 @@ export default {
             formData.append('image', this.book.image);
             formData.append('title', this.book.title);
             formData.append('description', this.book.description);
-            this.$store.dispatch('books/create');
+            this.$store.dispatch('books/create', formData);
         },
     },
 };

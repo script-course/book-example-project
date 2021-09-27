@@ -14,12 +14,12 @@ export const auth = {
     },
     actions: {
         async login({commit}, payload) {
-            const {data} = await axios.post('api/login', payload);
+            const {data} = await axios.post('login', payload);
             commit('account/SET', data, {root: true});
             commit('SET_LOGGEDIN', true);
         },
         async logout({commit}) {
-            await axios.get('api/logout');
+            await axios.get('logout');
             commit('account/SET', undefined, {root: true});
             commit('SET_LOGGEDIN', false);
         },

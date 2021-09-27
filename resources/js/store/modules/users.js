@@ -12,7 +12,7 @@ export const users = {
     },
     actions: {
         async setAll({commit}) {
-            const {data} = await axios.get('api/users');
+            const {data} = await axios.get('users');
             commit('SET_ALL', data);
         },
     },

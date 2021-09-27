@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const books = {
     namespaced: true,
     state: () => ({all: []}),
@@ -12,11 +10,12 @@ export const books = {
     },
     actions: {
         async setAll({commit}) {
-            const {data} = await axios.get('api/books');
+            const {data} = await axios.get('books');
             commit('SET_ALL', data);
         },
-        async store({commit}) {
-            const {data} = await axios.post('api/books');
+        async create({commit}, payload) {
+            console.log();
+            const {data} = await axios.post('books', payload);
             commit('SET_ALL', data);
         },
     },

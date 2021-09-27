@@ -11,7 +11,7 @@ export const account = {
     },
     actions: {
         async set({commit}) {
-            const {data} = await axios.get('api/me');
+            const {data} = await axios.get('me');
             commit('SET', data);
         },
     },
