@@ -23,9 +23,12 @@ export const auth = {
             commit('SET_LOGGEDIN', true);
         },
         async logout({commit}) {
-            await getRequest('logout');
-            commit('account/SET', undefined, {root: true});
-            commit('SET_LOGGEDIN', false);
+            try {
+                await getRequest('logout');
+            } finally {
+                commit('account/SET', undefined, {root: true});
+                commit('SET_LOGGEDIN', false);
+            }
         },
     },
 };

@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div v-for="(userInfo, property) in accountForm" :key="property" class="row">
-            <div class="col col-lg-2">{{ translations[property] }}</div>
+            <div class="col col-lg-2">{{ userInfo.label }}</div>
             <div class="col col-lg-2">
                 <div v-if="editable !== property" @click="editable = property">
-                    {{ userInfo }}
+                    {{ userInfo.value }}
                 </div>
 
-                <TextInput v-if="editable === property" v-model="accountForm[property]" @editable="onEnter" />
+                <TextInput v-if="editable === property" v-model="userInfo.value" @editable="onEnter" />
             </div>
         </div>
 
@@ -32,19 +32,22 @@ import TextInput from '../components/forms/TextInput.vue';
 export default {
     components: {TextInput},
     data() {
-        // const user = this.$store.getters['account/get'];
         return {
             accountForm: {
-                first_name: '',
-                last_name: '',
-                email: '',
+                first_name: {
+                    value: '',
+                    label: 'Voornaam',
+                },
+                last_name: {
+                    value: '',
+                    label: 'Achternaam',
+                },
+                email: {
+                    value: '',
+                    label: 'Email-adres',
+                },
             },
             editable: '',
-            translations: {
-                first_name: 'Voornaam',
-                last_name: 'Achternaam',
-                email: 'Email-adres',
-            },
         };
     },
     computed: {
@@ -61,11 +64,6 @@ export default {
         },
         /** @returns {import('../types/models/user').User} */
         account() {
-            // const user = this.$store.getters['account/get'];
-            // this.accountForm.id = user.id;
-            // this.accountForm.first_name = user.first_name;
-            // this.accountForm.last_name = user.last_name;
-            // this.accountForm.email = user.email;
             return this.$store.getters['account/get'];
         },
     },
@@ -77,21 +75,11 @@ export default {
                 if (!newUser) return;
                 for (const property in this.accountForm) {
                     // @ts-ignore proprty is string, but accountForm expects specific strings
-                    if (property in newUser) this.accountForm[property] = newUser[property];
+                    if (property in newUser) this.accountForm[property].value = newUser[property];
                 }
             },
         },
     },
-    // mounted() {
-    //     this.accountForm = {...this.$store.getters['account/get']};
-    // },
-    // async mounted() {
-    //     const {data} = await axios.get('api/me');
-    //     this.accountForm.id = data.id;
-    //     this.accountForm.first_name = data.first_name;
-    //     this.accountForm.last_name = data.last_name;
-    //     this.accountForm.email = data.email;
-    // },
     beforeCreate() {
         this.$store.dispatch('account/set');
     },
