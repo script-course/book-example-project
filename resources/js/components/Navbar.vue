@@ -63,7 +63,13 @@
                     </li> -->
                 </ul>
                 <form class="d-flex" @submit.prevent>
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <input
+                        v-model="search"
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                    />
                     <button class="btn btn-outline-success" type="submit">
                         Search
                     </button>
@@ -77,6 +83,14 @@ export default {
     computed: {
         isLoggedIn() {
             return this.$store.getters['auth/getIsLoggedIn'];
+        },
+        search: {
+            get() {
+                return this.$store.getters['books/getSearch'];
+            },
+            set(value) {
+                this.$store.dispatch('books/setSearch', value);
+            },
         },
     },
     methods: {

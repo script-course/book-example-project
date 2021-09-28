@@ -1,7 +1,7 @@
 <template>
     <div>
         <Navbar />
-        <h1>{{ message }}</h1>
+        <h1>Welcome to book club!</h1>
         <div class="container">
             <router-view />
         </div>
@@ -12,11 +12,6 @@
 import Navbar from './components/Navbar.vue';
 export default {
     components: {Navbar},
-    data() {
-        return {
-            message: 'Gaan we dit nu in het nederlands of engels doen? Gaat nu wat door ELKAAR',
-        };
-    },
     mounted() {
         this.$store.dispatch('books/setAll');
     },

@@ -19,7 +19,7 @@
 export default {
     computed: {
         books() {
-            return this.$store.getters['books/getAll'];
+            return this.$store.getters['books/getFiltered'];
         },
     },
     mounted() {
