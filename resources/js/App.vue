@@ -1,8 +1,8 @@
 <template>
     <div>
         <Navbar />
-        <h1>Welcome to book club!</h1>
         <div class="container">
+            <h1>Welcome to book club!</h1>
             <router-view />
         </div>
     </div>

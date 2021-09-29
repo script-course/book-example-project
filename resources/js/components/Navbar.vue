@@ -62,7 +62,7 @@
                         </ul>
                     </li> -->
                 </ul>
-                <form class="d-flex" @submit.prevent>
+                <form class="d-flex" @submit.prevent="searchSubmit">
                     <div class="dropdown">
                         <input
                             v-model="search"
@@ -101,6 +101,7 @@ export default {
         return {search: ''};
     },
     computed: {
+        /** @returns {boolean} */
         isLoggedIn() {
             return this.$store.getters['auth/getIsLoggedIn'];
         },
@@ -117,6 +118,11 @@ export default {
         logout() {
             this.$store.dispatch('auth/logout');
             this.$router.push('home');
+        },
+        searchSubmit() {
+            if (!this.search) return;
+            this.$router.push({name: 'book.overview', query: {search: this.search}});
+            this.search = '';
         },
     },
 };
