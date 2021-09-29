@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import Home from '../pages/Home.vue';
 import BookOverview from '../pages/books/Overview.vue';
+import BookShow from '../pages/books/Show.vue';
 import LoginOverview from '../pages/auth/Login.vue';
 import Account from '../pages/Account.vue';
 import store from '../store';
@@ -21,6 +22,11 @@ const router = new VueRouter({
             path: '/books',
             component: BookOverview,
             name: 'book.overview',
+        },
+        {
+            path: '/books/:id',
+            component: BookShow,
+            name: 'book.show',
         },
         {
             path: '/login',

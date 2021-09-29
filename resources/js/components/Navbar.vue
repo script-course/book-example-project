@@ -63,13 +63,26 @@
                     </li> -->
                 </ul>
                 <form class="d-flex" @submit.prevent>
-                    <input
-                        v-model="search"
-                        class="form-control me-2"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                    />
+                    <div class="dropdown">
+                        <input
+                            v-model="search"
+                            class="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                        <ul v-if="books.length" class="dropdown-menu show w-100" aria-labelledby="dropdownMenuLink">
+                            <li v-for="book in books" :key="book.id">
+                                <router-link
+                                    class="dropdown-item"
+                                    :to="{name: 'book.show', params: {id: book.id}}"
+                                    @click="search = ''"
+                                >
+                                    {{ book.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </div>
                     <button class="btn btn-outline-success" type="submit">
                         Search
                     </button>
@@ -78,19 +91,26 @@
         </div>
     </nav>
 </template>
+
 <script>
+/**
+ * @typedef {import('../types/models/book').Book} Book
+ */
 export default {
+    data() {
+        return {search: ''};
+    },
     computed: {
         isLoggedIn() {
             return this.$store.getters['auth/getIsLoggedIn'];
         },
-        search: {
-            get() {
-                return this.$store.getters['books/getSearch'];
-            },
-            set(value) {
-                this.$store.dispatch('books/setSearch', value);
-            },
+        /** @returns {Book[]} */
+        books() {
+            const formattedSearch = this.search.toLowerCase();
+            if (!formattedSearch) return [];
+            /** @type {Book[]} */
+            const books = this.$store.getters['books/getAll'];
+            return books.filter(({title}) => title.includes(formattedSearch)).slice(0, 10);
         },
     },
     methods: {

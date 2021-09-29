@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const http = axios.create({baseURL: 'api/'});
+const http = axios.create({baseURL: '/api/'});
 
 /**
  *

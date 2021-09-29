@@ -8,7 +8,6 @@ interface AccountState {
 
 interface BookState {
     all: Book[];
-    search: string;
 }
 
 interface UserState {
