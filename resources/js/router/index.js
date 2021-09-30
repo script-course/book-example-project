@@ -5,6 +5,7 @@ import Home from '../pages/Home.vue';
 import BookOverview from '../pages/books/Overview.vue';
 import BookCreate from '../pages/books/Create.vue';
 import LoginOverview from '../pages/auth/Login.vue';
+import Register from '../pages/auth/Register.vue';
 import Account from '../pages/Account.vue';
 import store from '../store';
 
@@ -32,6 +33,14 @@ const router = new VueRouter({
             path: '/login',
             component: LoginOverview,
             name: 'auth.login',
+            meta: {
+                shouldBeLoggedOut: true,
+            },
+        },
+        {
+            path: '/register',
+            component: Register,
+            name: 'auth.register',
             meta: {
                 shouldBeLoggedOut: true,
             },
