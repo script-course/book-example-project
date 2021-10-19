@@ -19,9 +19,9 @@ export const auth = {
             commit('SET_LOGGEDIN', true);
         },
         async logout({commit}) {
-            await axios.get('logout');
             commit('account/SET', undefined, {root: true});
             commit('SET_LOGGEDIN', false);
+            await axios.get('logout');
         },
     },
 };

@@ -22,7 +22,7 @@ new Vue({
     store,
     router,
     mounted() {
-        console.log('Check if user is loggedin!');
+        this.$store.dispatch('auth/me');
     },
     render: h => h(App),
 });
