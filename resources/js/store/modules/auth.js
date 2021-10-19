@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const auth = {
     namespaced: true,
-    state: () => ({isLoggedIn: !!JSON.stringify(localStorage.getItem('loggedIn'))}),
+    //state: () => ({isLoggedIn: !!JSON.stringify(localStorage.getItem('loggedIn'))}),
+    state: () => ({isLoggedIn: localStorage.getItem('loggedIn') === 'true'}),
     getters: {
         getIsLoggedIn: state => state.isLoggedIn,
     },
@@ -22,6 +23,11 @@ export const auth = {
             commit('account/SET', undefined, {root: true});
             commit('SET_LOGGEDIN', false);
             await axios.get('logout');
+        },
+        async register({commit}, payload) {
+            const {data} = await axios.post('register', payload);
+            commit('account/SET', data, {root: true});
+            commit('SET_LOGGEDIN', true);
         },
     },
 };

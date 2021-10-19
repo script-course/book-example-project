@@ -30,6 +30,11 @@
                             Logout
                         </a>
                     </li>
+                    <li>
+                        <router-link v-if="!isLoggedIn" :to="{name: 'auth.register'}" class="nav-link">
+                            Register
+                        </router-link>
+                    </li>
                     <!-- <li class="nav-item dropdown">
                         <a
                             class="nav-link dropdown-toggle"
