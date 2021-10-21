@@ -22,7 +22,7 @@ new Vue({
     store,
     router,
     mounted() {
-        this.$store.dispatch('auth/me');
+        this.$store.dispatch('account/set');
     },
     render: h => h(App),
 });

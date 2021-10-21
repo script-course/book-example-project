@@ -16,11 +16,12 @@
                 Books:
             </div>
             <div class="col col-lg-6">
-                <ul>
-                    <li v-for="book in books" :key="book.id">
-                        {{ book.title }}
-                    </li>
-                </ul>
+                <table>
+                    <tr v-for="book in books" :key="book.id">
+                        <td>{{ book.title }}</td>
+                        <td><button @click="deleteBook(book.id)">delete</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -67,6 +68,9 @@ export default {
         onEnter() {
             // this.$store.dispatch('account/update');
             this.editable = '';
+        },
+        deleteBook(bookId) {
+            this.$store.dispatch('account/removeBook', bookId);
         },
     },
 };
