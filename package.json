@@ -9,11 +9,11 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "eslint": "^7.28.0",
+        "eslint-plugin-vue": "^7.11.1",
         "postcss": "^8.2.15",
         "resolve-url-loader": "^4.0.0",
         "rollup-plugin-copy": "^3.4.0",
-        "eslint": "^7.28.0",
-        "eslint-plugin-vue": "^7.11.1",
         "sass": "^1.32.13",
         "vite": "2.3.1",
         "vite-plugin-vue2": "^1.5.1",
@@ -23,6 +23,7 @@
         "axios": "^0.21.2",
         "bootstrap": "^5.1.1",
         "vue": "^2.6.12",
+        "vue-multiselect": "^2.1.6",
         "vue-router": "^3.5.1",
         "vuex": "^3.6.2"
     }

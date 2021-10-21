@@ -26,7 +26,8 @@ class StoreBook extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required'
+            'image' => 'required|file',
+            'author_id' => 'required'
         ];
     }
 
@@ -40,7 +41,8 @@ class StoreBook extends FormRequest
         return [
             'title.required' => 'Please enter a title',
             'description.required' => 'Please enter a descriptions',
-            'image.required' => 'Please add an image'
+            'image.required' => 'Please add an image',
+            'author_id.required' => 'Please select an author'
         ];
     }
 }

@@ -6,6 +6,9 @@ use App\Http\Requests\StoreBook;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -16,7 +19,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return BookResource::collection(Book::all());
+        // ordering by id is for testing purposes
+        return BookResource::collection(Book::orderBy('id', 'desc')->get());
     }
 
     /**
@@ -39,7 +43,11 @@ class BookController extends Controller
     {
         $validated = $request->validated();
 
-        dd($validated);
+        $path = Storage::put('images', new File($validated['image']), 'public');
+
+        Book::create(['title' => $validated['title'], 'image' => $path, 'description' => $validated['description'], 'author_id' => $validated['author_id']]);
+
+        return BookResource::collection(Book::all());
     }
 
     /**

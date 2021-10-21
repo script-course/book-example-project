@@ -23,13 +23,13 @@ export default {
             return this.$store.getters['books/getAll'];
         },
     },
+    mounted() {
+        this.$store.dispatch('books/setAll');
+    },
     methods: {
         goToCreateBook() {
             this.$router.push('book/create');
         },
-    },
-    mounted() {
-        this.$store.dispatch('books/setAll');
     },
 };
 </script>

@@ -1,17 +1,21 @@
 <template>
     <div class="row">
-        <form @submit.prevent="submitBook" enctype="multipart/form-data">
+        <form enctype="multipart/form-data" @submit.prevent="submitBook">
             <div class="mb-3">
                 <label for="title" class="form-label">Book title:</label>
-                <input type="text" class="form-control" id="title" v-model="book.title" />
+                <input id="title" v-model="book.title" type="text" class="form-control" />
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description:</label>
-                <textarea class="form-control" id="description" v-model="book.description" />
+                <textarea id="description" v-model="book.description" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Author(s):</label>
+                <multiselect v-model="book.selected_authors" :options="authors" track-by="id" label="name" />
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Upload image</label>
-                <input type="file" class="form-control" id="image" ref="fileLoader" @change="dropDocument" />
+                <input id="image" ref="fileLoader" type="file" class="form-control" @change="dropDocument" />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -19,15 +23,27 @@
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect';
+
 export default {
+    components: {Multiselect},
     data() {
         return {
             book: {
                 title: null,
                 description: null,
                 image: null,
+                selected_authors: {},
             },
         };
+    },
+    computed: {
+        authors() {
+            return this.$store.getters['authors/getAll'];
+        },
+    },
+    mounted() {
+        this.$store.dispatch('authors/setAll');
     },
     methods: {
         dropDocument(event) {
@@ -38,8 +54,11 @@ export default {
             formData.append('image', this.book.image);
             formData.append('title', this.book.title);
             formData.append('description', this.book.description);
+            formData.append('author_id', this.book.selected_authors.id);
             this.$store.dispatch('books/create', formData);
+            this.$router.push({name: 'book.overview'});
         },
     },
 };
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
