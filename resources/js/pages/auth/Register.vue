@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         register() {
-            this.$store.dispatch('auth/register', this.auth);
+            this.$store.dispatch('account/register', this.auth);
             this.$router.push('home');
         },
     },

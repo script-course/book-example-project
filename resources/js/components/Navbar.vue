@@ -81,12 +81,12 @@
 export default {
     computed: {
         isLoggedIn() {
-            return this.$store.getters['auth/getIsLoggedIn'];
+            return this.$store.getters['account/getIsLoggedIn'];
         },
     },
     methods: {
         logout() {
-            this.$store.dispatch('auth/logout');
+            this.$store.dispatch('account/logout');
             this.$router.push('home');
         },
     },
