@@ -1,12 +1,9 @@
 <template>
     <div class="container">
-        <div v-for="(userInfo, property) in accountForm" :key="property" class="row">
+        <div v-for="(index, property) in translations" :key="index" class="row">
             <div class="col col-lg-2">{{ translations[property] }}</div>
             <div class="col col-lg-2">
-                <div v-if="editable !== property" @click="editable = property">
-                    {{ userInfo }}
-                </div>
-
+                <div v-if="editable !== property" @click="editable = property">{{ accountForm[property] }}</div>
                 <TextInput v-if="editable === property" v-model="accountForm[property]" @editable="onEnter" />
             </div>
         </div>
@@ -35,6 +32,7 @@ export default {
     data() {
         return {
             accountForm: {
+                id: null,
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -66,8 +64,8 @@ export default {
 
     methods: {
         onEnter() {
-            // this.$store.dispatch('account/update');
             this.editable = '';
+            this.$store.dispatch('account/update', this.accountForm);
         },
         deleteBook(bookId) {
             this.$store.dispatch('account/removeBook', bookId);

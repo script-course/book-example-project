@@ -24,6 +24,7 @@ Route::post('books', [BookController::class, 'store']);
 Route::get('authors', [AuthorController::class, 'index']);
 
 Route::post('remove-book', [AccountController::class, 'removeBook']);
+Route::put('account/{account}', [AccountController::class, 'update']);
 
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
 Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');

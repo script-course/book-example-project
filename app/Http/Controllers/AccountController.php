@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateAccount;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -69,9 +70,11 @@ class AccountController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $account)
+    public function update(UpdateAccount $request, User $account)
     {
-        //
+        $validated = $request->validated();
+        $account->update($validated);
+        return new UserResource($account);
     }
 
     /**
