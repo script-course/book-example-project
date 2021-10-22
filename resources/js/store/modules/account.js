@@ -2,13 +2,19 @@ import axios from 'axios';
 
 export const account = {
     namespaced: true,
-    state: () => ({user: undefined, isLoggedIn: localStorage.getItem('loggedIn') === 'true'}),
+    state: () => ({
+        user: JSON.parse(localStorage.getItem('user')),
+        isLoggedIn: localStorage.getItem('loggedIn') === 'true',
+    }),
     getters: {
         get: state => state.user,
         getIsLoggedIn: state => state.isLoggedIn,
     },
     mutations: {
-        SET: (state, payload) => (state.user = payload),
+        SET: (state, payload) => {
+            state.user = payload;
+            localStorage.setItem('user', JSON.stringify(payload));
+        },
         SET_LOGGEDIN: (state, payload) => {
             state.isLoggedIn = payload;
             localStorage.setItem('loggedIn', payload.toString());
