@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 import Home from '../pages/Home.vue';
 import BookOverview from '../pages/books/Overview.vue';
 import BookCreate from '../pages/books/Create.vue';
+import BookShow from '../pages/books/Show.vue';
+
 import LoginOverview from '../pages/auth/Login.vue';
 import Register from '../pages/auth/Register.vue';
 import Account from '../pages/Account.vue';
@@ -25,9 +27,14 @@ const router = new VueRouter({
             name: 'book.overview',
         },
         {
-            path: '/book/create',
+            path: '/books/create',
             component: BookCreate,
             name: 'book.create',
+        },
+        {
+            path: '/books/:id',
+            component: BookShow,
+            name: 'book.show',
         },
         {
             path: '/login',

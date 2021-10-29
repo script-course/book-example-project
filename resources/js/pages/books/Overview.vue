@@ -9,7 +9,9 @@
                     <p class="card-text">
                         {{ book.description }}
                     </p>
-                    <router-link :to="{name: 'book.overview'}" class="btn btn-primary">Check book</router-link>
+                    <router-link :to="{name: 'book.show', params: {id: book.id}}" class="btn btn-primary">
+                        Check book
+                    </router-link>
                 </div>
             </div>
         </div>
