@@ -1,6 +1,8 @@
 <template>
     <div class="row">
-        <button type="button" class="btn btn-primary" @click="goToCreateBook">Create book</button>
+        <router-link :to="{name: 'book.create'}" class="btn btn-primary">
+            Create Book
+        </router-link>
         <div v-for="book in books" :key="book.id" class="col-12 col-md-4 mb-3">
             <div class="card" style="width: 18rem;">
                 <img :src="book.image" class="card-img-top" alt="bookcover" />
@@ -27,11 +29,6 @@ export default {
     },
     mounted() {
         this.$store.dispatch('books/setAll');
-    },
-    methods: {
-        goToCreateBook() {
-            this.$router.push('book/create');
-        },
     },
 };
 </script>

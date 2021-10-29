@@ -16,6 +16,7 @@ class BookResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'category_id' => $this->categories->pluck('id'),
             'title' => $this->title,
             'image' => $this->image,
             'description' => $this->description,
