@@ -27,7 +27,9 @@ class StoreBook extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'image' => 'required|file',
-            'author_id' => 'required'
+            'author_id' => 'required',
+            'category_id' => 'required'
+
         ];
     }
 
@@ -42,7 +44,8 @@ class StoreBook extends FormRequest
             'title.required' => 'Please enter a title',
             'description.required' => 'Please enter a descriptions',
             'image.required' => 'Please add an image',
-            'author_id.required' => 'Please select an author'
+            'author_id.required' => 'Please select an author',
+            'category_id.required' => 'Please select a category'
         ];
     }
 }

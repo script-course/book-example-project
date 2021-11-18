@@ -43,9 +43,9 @@ class BookController extends Controller
     {
         $validated = $request->validated();
 
-        $path = Storage::put('images', new File($validated['image']), 'public');
+        $validated['image'] = Storage::put('images', new File($validated['image']), 'public');
 
-        Book::create(['title' => $validated['title'], 'image' => $path, 'description' => $validated['description'], 'author_id' => $validated['author_id']]);
+        Book::create($validated)->categories()->attach(explode(',', $validated['category_id']));
 
         return BookResource::collection(Book::all());
     }
